@@ -1,0 +1,41 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+
+<div class="publication-container" *ngFor="let pub of listPub">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="avatar"></div>
+      <mat-card-title>{{ pub.content }}</mat-card-title>
+      <mat-card-subtitle>{{ pub.pubDate | date }}</mat-card-subtitle>
+    </mat-card-header>
+    <div class="post-content">
+      <div *ngIf="pub.typePublication === TypePublication.PHOTO">
+        <img [src]="pub.content" alt="Post Image">
+      </div>
+      <div *ngIf="pub.typePublication === TypePublication.VIDEO">
+        <video controls>
+          <source [src]="pub.content" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div *ngIf="pub.typePublication === TypePublication.TEXT">{{ pub.content }}</div>
+    </div>
+    <mat-card-content>
+      <div>{{ pub.nbrcomment }} comments</div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-danger">Like</button>
+        <button type="button" class="btn btn-warning">Dislike</button>
+        <button type="button" class="btn btn-success">Sad</button>
+        <button type="button" class="btn btn-danger">Laugh</button>
+      </div>
+      <button mat-button>Like</button>
+      <button mat-button>Comment</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
