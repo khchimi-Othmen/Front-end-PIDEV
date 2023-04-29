@@ -22,6 +22,8 @@ import {AddreactComponent} from "./front/addreact/addreact.component";
 import { UpdatereactComponent } from './front/updatereact/updatereact.component';
 import { MatCardModule } from '@angular/material/card';
 import { AddpostComponent } from './front/addpost/addpost.component';
+import { MotInterditComponent } from './back/mot-interdit/mot-interdit.component';
+import { AddMotComponent } from './back/add-mot/add-mot.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { AddpostComponent } from './front/addpost/addpost.component';
     //ChatMessageComponent,
     AddreactComponent,
     UpdatereactComponent,
-    AddpostComponent
+    AddpostComponent,
+    MotInterditComponent,
+    AddMotComponent
 
   ],
   imports: [

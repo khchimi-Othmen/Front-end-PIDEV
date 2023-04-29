@@ -15,7 +15,7 @@ export class PublicationService {
  }
   //add Post
   public addPublication(pub:publication){
-    return this.http.post<publication>("http://localhost:8088/Publication/add-publication ",pub);
+    return this.http.post<publication>("http://localhost:8088/Publication/add-publication",pub);
   }
 
 

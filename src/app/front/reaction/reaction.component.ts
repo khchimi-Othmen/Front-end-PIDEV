@@ -16,7 +16,7 @@ export class ReactionComponent implements OnInit{
 
   }
 delete(id:number){
-    this.service.deleteCar(id).subscribe(()=>this.service.getreaction().subscribe(res=>this.listreac=res));
+    this.service.deleteReact(id).subscribe(()=>this.service.getreaction().subscribe(res=>this.listreac=res));
 }
 update(id:number){
     this.router.navigate(['/user/updatereact',id]);

@@ -24,7 +24,7 @@ public upadateReact(react:reaction){
 
 }
 
-public deleteCar(id:number){
+public deleteReact(id:number){
     return this.http.delete("http://localhost:8088/Reaction/remove-Reaction/"+id);
 }
 public getbyid(id:number){

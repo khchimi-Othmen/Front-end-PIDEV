@@ -10,13 +10,16 @@ import {CommentaireComponent} from "./front/commentaire/commentaire.component";
 import {AddreactComponent} from "./front/addreact/addreact.component";
 import {UpdatereactComponent} from "./front/updatereact/updatereact.component";
 import {AddpostComponent} from "./front/addpost/addpost.component";
+import {MotInterditComponent} from "./back/mot-interdit/mot-interdit.component";
+import {AddMotComponent} from "./back/add-mot/add-mot.component";
 //import {ChatMessageComponent} from "./front/chat-message/chat-message.component";
 
 const routes: Routes = [
   { path :"", redirectTo:"admin", pathMatch:"full"},
   { path :'admin', component:AllTemplateAdminComponent,
     children:[
-      {path:"",component:BodyAdminComponent}
+      {path:"",component:BodyAdminComponent},
+
     ]},
   { path :'user', component:AllTemplateUserComponent,
     children:[
@@ -27,6 +30,9 @@ const routes: Routes = [
       {path: "addreaction",component: AddreactComponent},
       {path: "updatereact/:id",component: UpdatereactComponent},
       {path: "addpost",component: AddpostComponent},
+      {path:"badWr", component: MotInterditComponent},
+      {path:"addbadWr", component:AddMotComponent }
+
     ]},
 
   {path:"**",component:AllTemplateUserComponent}
