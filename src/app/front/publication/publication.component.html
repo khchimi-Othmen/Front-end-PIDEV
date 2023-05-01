@@ -1,41 +1,126 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 <!------ Include the above in your HEAD tag ---------->
 
+<!--
+<div class="container">
+  <h2>lists des publication publier  </h2>
+  <div class="publication-container" *ngFor="let pub of listPub">
 
+        <div class="avatar">
+          <img src="data:image/jpeg;base64,{{pub.image}}" alt="Post Image" width="50" height="50">
+        </div>
+        <div class="header-text">
+          <mat-card-title>{{ pub.title }}</mat-card-title>
+          <mat-card-subtitle> {{ pub.pubDate | date:'medium' }}</mat-card-subtitle>
+        </div>
 
-<div class="publication-container" *ngFor="let pub of listPub">
-  <mat-card>
-    <mat-card-header>
-      <div mat-card-avatar class="avatar"></div>
-      <mat-card-title>{{ pub.content }}</mat-card-title>
-      <mat-card-subtitle>{{ pub.pubDate | date }}</mat-card-subtitle>
-    </mat-card-header>
-    <div class="post-content">
-      <div *ngIf="pub.typePublication === TypePublication.PHOTO">
-        <img [src]="pub.content" alt="Post Image">
+      <div class="post-content">
+        <div *ngIf="pub.typePublication === TypePublication.PHOTO">
+          <img src="{{ pub.content }}" alt="{{ pub.title }}">
+        </div>
+        <div *ngIf="pub.typePublication === TypePublication.VIDEO">
+          <video controls>
+            <source [src]="pub.content" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div *ngIf="pub.typePublication === TypePublication.TEXT">
+          <p>{{ pub.content }}</p>
+        </div>
       </div>
-      <div *ngIf="pub.typePublication === TypePublication.VIDEO">
-        <video controls>
-          <source [src]="pub.content" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div *ngIf="pub.typePublication === TypePublication.TEXT">{{ pub.content }}</div>
-    </div>
-    <mat-card-content>
-      <div>{{ pub.nbrcomment }} comments</div>
-    </mat-card-content>
-    <mat-card-actions>
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-danger">Like</button>
-        <button type="button" class="btn btn-warning">Dislike</button>
-        <button type="button" class="btn btn-success">Sad</button>
-        <button type="button" class="btn btn-danger">Laugh</button>
-      </div>
-      <button mat-button>Like</button>
-      <button mat-button>Comment</button>
-    </mat-card-actions>
-  </mat-card>
+
+        <div class="comment-count">{{ pub.commentCount }} comments</div>
+
+      <button mat-button color="primary" (click)="likePublication(pub)">
+         <mat-icon>thumb_up</mat-icon> -->
+       <!-- <span>Like</span>
+      </button>
+      <button mat-button color="primary" (click)="commentPublication(pub)">
+         <mat-icon>comment</mat-icon> -->
+     <!--   <span>Comment</span>
+      </button>
+
+  </div>
 </div>
+-->
+
+
+
+<div class="container">
+  <!-- Header -->
+  <div class="row mt-5">
+    <div class="col-md-8">
+      <h1 class="fw-bold">Liste des publications</h1>
+    </div>
+
+
+    <!-- Product cards -->
+    <div class="row">
+      <div class="card-group">
+        <!-- Loop through products: cette méthode est utilisée pour sélectionner une partie d'un tableau afin de l'afficher dans une page spécifique lors de la pagination. -->
+        <div *ngFor="let pub of listPub.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage)" class="col-md-4 mb-4">
+        <div class="card bg-secondary rounded">
+          <div class="avatar">
+            <img src="data:image/jpeg;base64,{{pub.image}}" alt="Post Image" width="130" height="130">
+          </div>
+
+          <div class="post-content">
+            <div *ngIf="pub.typePublication === TypePublication.PHOTO">
+              <img src="{{ pub.content }}" alt="{{ pub.content }}">
+            </div>
+            <div *ngIf="pub.typePublication === TypePublication.VIDEO">
+              <video controls>
+                <source [src]="pub.content" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div *ngIf="pub.typePublication === TypePublication.TEXT">
+              <p>{{ pub.content }}</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+
+              <p class="card-text fw-bold">{{pub.content}}</p>
+
+            </div>
+            <hr>
+
+            <div class="d-flex justify-content-between mt-3">
+              <a class="btn btn-primary" > Like </a>
+              <div>
+
+                <button class="btn btn-danger" (click)="deletePublication(pub.idPub)"><i class="bi bi-trash"></i> </button>
+              </div>
+            </div>
+          </div>
+          <div class="footer-text">
+
+            <mat-card-subtitle> {{ pub.pubDate | date:'medium' }}</mat-card-subtitle>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- pagination buttons -->
+  <div class="row justify-content-center my-4">
+    <div class="col-md-6">
+      <div class="btn-toolbar d-flex justify-content-center" role="toolbar">
+        <div class="btn-group me-2" role="group">
+          <!-- Generate pagination buttons based on the total number of pages -->
+          <button *ngFor="let page of totalPages" type="button" class="btn btn-primary"
+                  [class.active]="currentPage === page"
+                  (click)="currentPage = page">{{page}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+

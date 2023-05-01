@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import {PublicationService} from "../../Services/publication.service";
 import {Router} from "@angular/router";
-import {publication} from "../../../assets/Models/publication";
+import {publication, TypePublication} from "../../../assets/Models/publication";
+import {NgForm} from "@angular/forms";
+import {postImg} from "../../../assets/Models/postImg";
 //import { TypePublication } from 'path/to/TypePublication';
 
 @Component({
@@ -11,32 +13,40 @@ import {publication} from "../../../assets/Models/publication";
 })
 export class AddpostComponent {
   pub:publication= new publication();
+  request!: string;
+  file!: File;
  constructor(private service:PublicationService, private router:Router) {
  }
+ /*
  public addpost(){
    this.service.addPublication(this.pub).subscribe(()=>this.router.navigateByUrl("user/post"))
  }
 
-  /*
-  ///upload img
-  public onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      this.pub.content = reader.result as string;
+  */
+// add pub with img
+
+  addpost(form: NgForm) {
+    console.log("CHEDYA FOR THE WIN");
+
+    const formData = new FormData();
+    formData.append('request', this.request);
+    formData.append('file', this.file);
+    const formValue=form.value;
+    console.log(form.value);
+
+    let myPublication: postImg = {
+      content: formValue.content,
+      pubDate : new Date(Date.now()),
+      typePublication: formValue.typePublication
     };
-    reader.readAsDataURL(file);
+
+    this.service.addPublication(myPublication,this.file)
+      .subscribe((response: any) => {
+        console.log(response);
+      });
   }
-  public addpost(){
-    if (this.pub.typePublication === TypePublication.PHOTO) {
-      const formData = new FormData();
-      formData.append('image', this.pub.content);
-      this.pub.content = ''; // Reset content to avoid sending it twice
-      this.service.addPublicationWithImage(formData, this.pub).subscribe(() => this.router.navigateByUrl("user/post"));
-    } else {
-      this.service.addPublication(this.pub).subscribe(() => this.router.navigateByUrl("user/post"));
-    }
+  onFileSelected(event: any) {
+    this.file = event.target.files[0];
   }
 
-   */
 }

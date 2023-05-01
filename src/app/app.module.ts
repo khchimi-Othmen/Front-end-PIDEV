@@ -24,6 +24,8 @@ import { MatCardModule } from '@angular/material/card';
 import { AddpostComponent } from './front/addpost/addpost.component';
 import { MotInterditComponent } from './back/mot-interdit/mot-interdit.component';
 import { AddMotComponent } from './back/add-mot/add-mot.component';
+import {MatIconModule} from "@angular/material/icon";
+import { UpdatepubComponent } from './front/updatepub/updatepub.component';
 
 
 @NgModule({
@@ -46,16 +48,18 @@ import { AddMotComponent } from './back/add-mot/add-mot.component';
     UpdatereactComponent,
     AddpostComponent,
     MotInterditComponent,
-    AddMotComponent
+    AddMotComponent,
+    UpdatepubComponent
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    MatCardModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        MatCardModule,
+        MatIconModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

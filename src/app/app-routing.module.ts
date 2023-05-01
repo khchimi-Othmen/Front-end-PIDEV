@@ -12,6 +12,7 @@ import {UpdatereactComponent} from "./front/updatereact/updatereact.component";
 import {AddpostComponent} from "./front/addpost/addpost.component";
 import {MotInterditComponent} from "./back/mot-interdit/mot-interdit.component";
 import {AddMotComponent} from "./back/add-mot/add-mot.component";
+import {UpdatepubComponent} from "./front/updatepub/updatepub.component";
 //import {ChatMessageComponent} from "./front/chat-message/chat-message.component";
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
       {path: "addreaction",component: AddreactComponent},
       {path: "updatereact/:id",component: UpdatereactComponent},
       {path: "addpost",component: AddpostComponent},
+      {path: "updatepost/:id",component: UpdatepubComponent},
       {path:"badWr", component: MotInterditComponent},
       {path:"addbadWr", component:AddMotComponent }
 

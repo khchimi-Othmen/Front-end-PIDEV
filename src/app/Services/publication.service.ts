@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {publication} from "../../assets/Models/publication";
-import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +9,30 @@ export class PublicationService {
 
 
   constructor(private http:HttpClient) { }
- public getpublication():Observable<publication[]>{
-    return this.http.get<publication[]>("http://localhost:8088/Publication/retrieve-all-Publication")
+ public getpublication(){
+    return this.http.get<any>("http://localhost:8088/Publication/retrieve-all-publication")
  }
-  //add Post
-  public addPublication(pub:publication){
-    return this.http.post<publication>("http://localhost:8088/Publication/add-publication",pub);
+
+  /// up img
+  public addPublication(request: any, file: File) {
+    const formData: FormData = new FormData();
+    let JsonConvert=  JSON.stringify(request) ;
+    formData.append('request', JsonConvert);
+    formData.append('file', file);
+    const httpHeaders = new HttpHeaders();
+    httpHeaders.set('Content-Type', 'multipart/form-data');
+    return this.http.post<any>("http://localhost:8088/Publication/add-publication" , formData, { headers: httpHeaders });
+  }
+  ///
+  public upadatePublication(pub:publication){
+    return this.http.put<any>("http://localhost:8088/Publication/update-Publication",pub)
   }
 
+  public deletePublication(id:number){
+    return this.http.delete("http://localhost:8088/Publication/remove-Publication/"+id);
+  }
+  public getbyid(id:number){
+    return this.http.get<any>("ttp://localhost:8088/Publication/retrieve-publication/"+id);
+  }
 
 }
