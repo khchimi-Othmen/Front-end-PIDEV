@@ -3,13 +3,15 @@ export enum TypePublication{
 }
 
 export class publication{
-  idPub!: number
-  content!:string
-  nbrcomment!:number
-  image!: string
-  pubDate!: Date
-  typePublication!:TypePublication
-
-
+  constructor(
+    public idPub: number,
+    public content:string,
+  public nbrcomment:number,
+  public image: string,
+  public pubDate: Date,
+  public typePublication:TypePublication) {
+  }
 }
+
+
 

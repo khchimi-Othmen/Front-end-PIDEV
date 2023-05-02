@@ -1,6 +1,8 @@
 export class commentaire{
-  idCom!: number
-  commentText!: String
-  commentDate!: Date
+  constructor(
+    public idCom: number,
+    public commentText: String,
+    public commentDate: Date) {
+  }
 
 }

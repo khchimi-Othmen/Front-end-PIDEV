@@ -83,21 +83,39 @@
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
 
+
               <p class="card-text fw-bold">{{pub.content}}</p>
 
             </div>
             <hr>
 
-            <div class="d-flex justify-content-between mt-3">
-              <a class="btn btn-primary" > Like </a>
+            <div class="">
               <div>
 
+                <button class="btn btn-danger" (click)="update(pub.idPub)"> Update </button>
                 <button class="btn btn-danger" (click)="deletePublication(pub.idPub)"><i class="bi bi-trash"></i> </button>
+                <div><ul></ul></div>
+
+                <form (ngSubmit)="Commentaire()" id="comment-form">
+                  <div class="mb-3">
+
+                    <input required class="form-control " required placeholder="commentaire" type="text" [(ngModel)]="commentaire.commentText" name="commentText" id="commentText" />
+
+                  </div>
+
+
+                  <div class="col-12">
+                    <div class="form-group d-flex justify-content-between mt-3">
+                      <button class="btn btn-primary" type="submit" name="submit_reg">Comment</button>
+                    </div>
+                  </div>
+
+                </form>
               </div>
             </div>
           </div>
-          <div class="footer-text">
 
+          <div class="footer-text">
             <mat-card-subtitle> {{ pub.pubDate | date:'medium' }}</mat-card-subtitle>
           </div>
 

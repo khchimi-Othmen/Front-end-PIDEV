@@ -5,6 +5,7 @@ import {publication, TypePublication} from "../../../assets/Models/publication";
 import {NgForm} from "@angular/forms";
 import {postImg} from "../../../assets/Models/postImg";
 //import { TypePublication } from 'path/to/TypePublication';
+import {Location} from '@angular/common'
 
 @Component({
   selector: 'app-addpost',
@@ -12,10 +13,10 @@ import {postImg} from "../../../assets/Models/postImg";
   styleUrls: ['./addpost.component.css']
 })
 export class AddpostComponent {
-  pub:publication= new publication();
+  pub:publication= new publication(1,"",0,"",new Date(),TypePublication.PHOTO);
   request!: string;
   file!: File;
- constructor(private service:PublicationService, private router:Router) {
+ constructor(private service:PublicationService,private location :Location, private router:Router) {
  }
  /*
  public addpost(){
@@ -43,6 +44,8 @@ export class AddpostComponent {
     this.service.addPublication(myPublication,this.file)
       .subscribe((response: any) => {
         console.log(response);
+        this.location.replaceState('/user/post');
+        location.reload();
       });
   }
   onFileSelected(event: any) {

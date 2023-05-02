@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {PublicationService} from "../../Services/publication.service";
 import {publication, TypePublication} from "../../../assets/Models/publication";
 import {Router} from "@angular/router";
+import {CommentaireService} from "../../Services/commentaire.service";
+import {Location} from "@angular/common";
+import {commentaire} from "../../../assets/Models/commentaire";
 
 @Component({
   selector: 'app-publication',
@@ -9,11 +12,12 @@ import {Router} from "@angular/router";
   styleUrls: ['./publication.component.css']
 })
 export class PublicationComponent implements OnInit{
-
+  commentaire : commentaire = new commentaire(0,"",new Date())
+  message:any;
 listPub!: publication[];
 currentPage = 1;
 itemsPerPage = 6;
-  constructor(private service:PublicationService,private router:Router) { }
+  constructor(private service:PublicationService,private serviceCom:CommentaireService,private location: Location,private router:Router) { }
   ngOnInit(): void {
     this.service.getpublication().subscribe((data)=>{
     console.log(data);
@@ -36,11 +40,9 @@ itemsPerPage = 6;
     }
   }
 
-
   update(id:number){
-    this.router.navigate(['/user/updatepub',id]);
+    this.router.navigate(['/user/updatePost',id]);
   }
-
   ///////
   commentPublication(pub: any) {
 
@@ -56,6 +58,13 @@ itemsPerPage = 6;
     return Array(totalPages).fill(0).map((x, i) => i + 1);
   }
 
-
+  Commentaire(){
+    let resp = this.serviceCom.addComment(this.commentaire);
+    resp.subscribe((data) => {
+      this.message = data;
+      this.location.replaceState('/user/post');
+      location.reload();
+    });
+  }
 }
 

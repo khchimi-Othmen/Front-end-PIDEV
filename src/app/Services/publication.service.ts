@@ -25,12 +25,13 @@ export class PublicationService {
   }
   ///
   public upadatePublication(pub:publication){
-    return this.http.put<any>("http://localhost:8088/Publication/update-Publication",pub)
+    return this.http.put<publication>("http://localhost:8088/Publication/update-Publication",pub)
   }
 
   public deletePublication(id:number){
     return this.http.delete("http://localhost:8088/Publication/remove-Publication/"+id);
   }
+
   public getbyid(id:number){
     return this.http.get<any>("ttp://localhost:8088/Publication/retrieve-publication/"+id);
   }

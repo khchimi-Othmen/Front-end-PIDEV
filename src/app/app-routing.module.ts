@@ -20,6 +20,8 @@ const routes: Routes = [
   { path :'admin', component:AllTemplateAdminComponent,
     children:[
       {path:"",component:BodyAdminComponent},
+      {path:"badWr", component: MotInterditComponent},
+      {path:"addbadWr", component:AddMotComponent }
 
     ]},
   { path :'user', component:AllTemplateUserComponent,
@@ -31,9 +33,8 @@ const routes: Routes = [
       {path: "addreaction",component: AddreactComponent},
       {path: "updatereact/:id",component: UpdatereactComponent},
       {path: "addpost",component: AddpostComponent},
-      {path: "updatepost/:id",component: UpdatepubComponent},
-      {path:"badWr", component: MotInterditComponent},
-      {path:"addbadWr", component:AddMotComponent }
+      {path: "updatePost/:id",component: UpdatepubComponent},
+
 
     ]},
 
