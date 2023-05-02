@@ -11,11 +11,15 @@ import {commentaire} from "../../../assets/Models/commentaire";
 })
 export class CommentaireComponent implements OnInit{
   comment = new commentaire(0,"",new Date())
- message:any;
+    listcomments: any[]=[];
+
+  message:any;
   constructor(private service:CommentaireService,private location: Location,private router:Router) { }
 
 
   ngOnInit(): void {
+    this.findcomments();
+
   }
   AddCommantaire(){
     let resp = this.service.addComment(this.comment);
@@ -24,5 +28,9 @@ export class CommentaireComponent implements OnInit{
       this.location.replaceState('/admin/badWr');
       location.reload();
     });
+  }
+
+  findcomments(){
+    this.service.getComments().subscribe(data=>{this.listcomments=data as any[];})
   }
 }

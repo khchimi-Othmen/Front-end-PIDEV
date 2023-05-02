@@ -44,9 +44,10 @@ export class AddpostComponent {
     this.service.addPublication(myPublication,this.file)
       .subscribe((response: any) => {
         console.log(response);
-        this.location.replaceState('/user/post');
-        location.reload();
+
       });
+    this.location.replaceState('user/post');
+    location.reload();
   }
   onFileSelected(event: any) {
     this.file = event.target.files[0];

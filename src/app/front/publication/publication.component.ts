@@ -14,6 +14,7 @@ import {commentaire} from "../../../assets/Models/commentaire";
 export class PublicationComponent implements OnInit{
   commentaire : commentaire = new commentaire(0,"",new Date())
   message:any;
+  listcomments: any[]=[];
 listPub!: publication[];
 currentPage = 1;
 itemsPerPage = 6;
@@ -22,6 +23,7 @@ itemsPerPage = 6;
     this.service.getpublication().subscribe((data)=>{
     console.log(data);
     this.listPub = data;
+       this.findcomments();
   }
     );
   }
@@ -65,6 +67,10 @@ itemsPerPage = 6;
       this.location.replaceState('/user/post');
       location.reload();
     });
+  }
+
+  findcomments(){
+    this.serviceCom.getComments().subscribe(data=>{this.listcomments=data as any[];})
   }
 }
 

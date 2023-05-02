@@ -114,8 +114,10 @@
               </div>
             </div>
           </div>
+          <tr *ngFor="let a of listcomments">
+            <td class="text-white"><strong>{{ a.commentText }}</strong></td>
 
-          <div class="footer-text">
+            <div class="footer-text">
             <mat-card-subtitle> {{ pub.pubDate | date:'medium' }}</mat-card-subtitle>
           </div>
 
